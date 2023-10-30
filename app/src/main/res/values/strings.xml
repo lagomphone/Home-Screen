@@ -1,5 +1,19 @@
 <resources>
     <string name="app_name">Home Screen</string>
+    <string name="show_license">License</string>
+    <string name="license">License for Home Screen</string>
+    <string name="license_description">
+This application is a derivative work based on "OLauncher Clutter Free," which itself is a fork of the original "OLauncher." All rights are attributed to the respective authors and contributors of those projects.\n
+\n
+- Original OLauncher: Licensed under GPLv3.0. Further details and source code can be sought from the appropriate repositories or authors.\n
+\n
+- OLauncher Clutter Free: A modification of OLauncher. Further details and source code can be sought from the appropriate repositories or authors.\n
+\n
+- Home-Screen: This application, which you\'re currently using, is a further modification and is also licensed under GPLv3.0. You can access its source code at: https://github.com/lagomphone/Home-Screen\n
+\n
+For the full text of the GPLv3.0 license, please refer to: https://www.gnu.org/licenses/gpl-3.0.html
+</string>
+    <string name="oklagom">OK</string>
     <string name="accessibility_service_name">OlauncherCF Actions Service</string>
     <string name="app">App</string>
     <string name="set_as_default_launcher">Set as default launcher</string>
