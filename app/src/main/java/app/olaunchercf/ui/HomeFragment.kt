@@ -85,10 +85,10 @@ class HomeFragment : Fragment(), View.OnClickListener, View.OnLongClickListener 
         super.onResume()
 
         // only show "set as default"-button if tips are GONE
-        if (binding.firstRunTips.visibility == View.GONE) {
-            binding.setDefaultLauncher.visibility =
-                if (isOlauncherDefault(requireContext())) View.GONE else View.VISIBLE
-        }
+        //   if (binding.firstRunTips.visibility == View.GONE) {
+        //       binding.setDefaultLauncher.visibility =
+        //           if (isOlauncherDefault(requireContext())) View.GONE else View.VISIBLE
+        //   }
     }
 
     override fun onClick(view: View) {
