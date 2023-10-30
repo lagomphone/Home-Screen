@@ -55,6 +55,11 @@ import app.olaunchercf.ui.compose.SettingsComposable.SettingsTopView
 import app.olaunchercf.ui.compose.SettingsComposable.SettingsTwoButtonRow
 import app.olaunchercf.ui.compose.SettingsComposable.SimpleTextButton
 
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
+
 class SettingsFragment : Fragment() {
 
     private lateinit var prefs: Prefs
@@ -97,6 +102,7 @@ class SettingsFragment : Fragment() {
     @Composable
     private fun Settings(fontSize: TextUnit = TextUnit.Unspecified) {
         val selected = remember { mutableStateOf("") }
+        val showDialog = remember { mutableStateOf(false) } // <-- Added
         /*val fs = remember { mutableStateOf(fontSize) }
 
         val titleFs = if (fs.value.isSpecified) {
@@ -115,15 +121,13 @@ class SettingsFragment : Fragment() {
 
         Column {
             SettingsTopView(
-                stringResource(R.string.app_name),
+                "Home Screen",
                 onClick = { openAppInfo(requireContext(), android.os.Process.myUserHandle(), BuildConfig.APPLICATION_ID) },
             ) {
                 SimpleTextButton(stringResource(R.string.hidden_apps) ) {
                     showHiddenApps()
                 }
-                SimpleTextButton(stringResource(changeLauncherText) ) {
-                    resetDefaultLauncher(requireContext())
-                }
+                // The button for changeLauncherText has been removed
             }
             SettingsArea(
                 title = stringResource(R.string.appearance),
@@ -350,29 +354,45 @@ class SettingsFragment : Fragment() {
                     }
                 )
             )
-            SettingsArea(title = getString(R.string.backup),
-                selected = selected,
-                items = arrayOf(
-                    { _, _ ->
-                        SettingsTwoButtonRow(
-                            firstButtonText = getString(R.string.load_backup),
-                            secondButtonText = getString(R.string.store_backup),
-                            firstButtonAction = { loadFile(requireActivity()) },
-                            secondButtonAction = { storeFile(requireActivity()) },
-                        )
-                    }
-                )
-            )
+            //     SettingsArea(title = getString(R.string.backup),
+            //         selected = selected,
+            //         items = arrayOf(
+            //           { _, _ ->
+            //             SettingsTwoButtonRow(
+            //                 firstButtonText = getString(R.string.load_backup),
+            //                 secondButtonText = getString(R.string.store_backup),
+            //                firstButtonAction = { loadFile(requireActivity()) },
+            //               secondButtonAction = { storeFile(requireActivity()) },
+            //            )
+            //       }
+            //   )
+            // )
 
             // version number
-            Text(
-                modifier = Modifier
-                    .align(Alignment.End)
-                    .padding(10.dp, 5.dp),
-                text = "Version: ${requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName}",
+            //  Text(
+            //      modifier = Modifier
+            //         .align(Alignment.End)
+            //         .padding(10.dp, 5.dp),
+            //       text = "Version: ${requireContext().packageManager.getPackageInfo(requireContext().packageName, 0).versionName}",
 
-                color = Color.DarkGray
-            )
+            //    color = Color.DarkGray
+            // )
+            Button(onClick = { showDialog.value = true }) {
+                Text(text = stringResource(R.string.show_license))
+            }
+
+            if (showDialog.value) {
+                AlertDialog(
+                    onDismissRequest = { showDialog.value = false },
+                    title = { Text(text = stringResource(R.string.license)) },
+                    text = { Text(text = stringResource(R.string.license_description)) },
+                    confirmButton = {
+                        TextButton(onClick = { showDialog.value = false }) {
+                            Text(text = stringResource(R.string.oklagom))
+                        }
+                    }
+                )
+            }
         }
     }
 
