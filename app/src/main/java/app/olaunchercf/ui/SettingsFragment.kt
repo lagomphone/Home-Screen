@@ -59,6 +59,12 @@ import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.foundation.layout.*
+
+
+import androidx.compose.material.*
+import androidx.compose.ui.window.Dialog
 
 class SettingsFragment : Fragment() {
 
@@ -377,9 +383,14 @@ class SettingsFragment : Fragment() {
 
             //    color = Color.DarkGray
             // )
-            Button(onClick = { showDialog.value = true }) {
-                Text(text = stringResource(R.string.show_license))
+
+
+            fun readFullLicense(context: Context): String {
+                return context.resources.openRawResource(R.raw.full_license).bufferedReader().use { it.readText() }
             }
+
+            val showDialog = remember { mutableStateOf(false) }
+            val showFullLicenseDialog = remember { mutableStateOf(false) }
 
             if (showDialog.value) {
                 AlertDialog(
@@ -390,9 +401,61 @@ class SettingsFragment : Fragment() {
                         TextButton(onClick = { showDialog.value = false }) {
                             Text(text = stringResource(R.string.oklagom))
                         }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = {
+                            showDialog.value = false
+                            showFullLicenseDialog.value = true
+                        }) {
+                            Text(text = stringResource(R.string.show_full_license))
+                        }
                     }
                 )
             }
+
+            if (showFullLicenseDialog.value) {
+                Dialog(onDismissRequest = { showFullLicenseDialog.value = false }) {
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        Surface(
+                            shape = MaterialTheme.shapes.medium,
+                            elevation = 24.dp,
+                            modifier = Modifier.fillMaxSize().padding(16.dp)
+                        ) {
+                            Column {
+                                Text(
+                                    text = stringResource(R.string.GNUlicense),
+                                    style = MaterialTheme.typography.h6,
+                                    modifier = Modifier.padding(16.dp)
+                                )
+
+                                Box(
+                                    modifier = Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())
+                                ) {
+                                    Text(
+                                        text = readFullLicense(context = LocalContext.current),
+                                        style = MaterialTheme.typography.body1,
+                                        modifier = Modifier.padding(16.dp)
+                                    )
+                                }
+
+                                Row(
+                                    horizontalArrangement = Arrangement.End,
+                                    modifier = Modifier.fillMaxWidth().padding(16.dp)
+                                ) {
+                                    TextButton(onClick = { showFullLicenseDialog.value = false }) {
+                                        Text(text = stringResource(R.string.oklagom))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            Button(onClick = { showDialog.value = true }) {
+                Text(text = stringResource(R.string.show_license))
+            }
+
         }
     }
 
