@@ -101,7 +101,7 @@ class Prefs(val context: Context) {
         set(value) = prefs.edit().putBoolean(LOCK_MODE, value).apply()
 
     var autoShowKeyboard: Boolean
-        get() = prefs.getBoolean(AUTO_SHOW_KEYBOARD, true)
+        get() = prefs.getBoolean(AUTO_SHOW_KEYBOARD, false)
         set(value) = prefs.edit().putBoolean(AUTO_SHOW_KEYBOARD, value).apply()
 
     var autoOpenApp: Boolean
@@ -111,9 +111,9 @@ class Prefs(val context: Context) {
     var homeAppsNum: Int
         get() {
             return try {
-                prefs.getInt(HOME_APPS_NUM, 4)
+                prefs.getInt(HOME_APPS_NUM, 7)
             } catch (_: Exception) {
-                4
+                7
             }
         }
         set(value) = prefs.edit().putInt(HOME_APPS_NUM, value).apply()
@@ -154,22 +154,22 @@ class Prefs(val context: Context) {
         get() {
             val string = prefs.getString(
                 DRAWER_ALIGNMENT,
-                Constants.Gravity.Right.name
+                Constants.Gravity.Center.name
             ).toString()
             return Constants.Gravity.valueOf(string)
         }
         set(value) = prefs.edit().putString(DRAWER_ALIGNMENT, value.name).apply()
 
     var showStatusBar: Boolean
-        get() = prefs.getBoolean(STATUS_BAR, false)
+        get() = prefs.getBoolean(STATUS_BAR, true)
         set(value) = prefs.edit().putBoolean(STATUS_BAR, value).apply()
 
     var showTime: Boolean
-        get() = prefs.getBoolean(SHOW_TIME, true)
+        get() = prefs.getBoolean(SHOW_TIME, false)
         set(value) = prefs.edit().putBoolean(SHOW_TIME, value).apply()
 
     var showDate: Boolean
-        get() = prefs.getBoolean(SHOW_DATE, true)
+        get() = prefs.getBoolean(SHOW_DATE, false)
         set(value) = prefs.edit().putBoolean(SHOW_DATE, value).apply()
 
     var homeLocked: Boolean
@@ -195,11 +195,12 @@ class Prefs(val context: Context) {
      */
 
     var swipeLeftAction: Constants.Action
-        get() = loadAction(SWIPE_LEFT_ACTION, Constants.Action.OpenApp)
+        get() = loadAction(SWIPE_LEFT_ACTION, Constants.Action.Disabled)
         set(value) = storeAction(SWIPE_LEFT_ACTION, value)
 
+
     var swipeRightAction: Constants.Action
-        get() = loadAction(SWIPE_RIGHT_ACTION, Constants.Action.OpenApp)
+        get() = loadAction(SWIPE_RIGHT_ACTION, Constants.Action.Disabled)
         set(value) = storeAction(SWIPE_RIGHT_ACTION, value)
 
     var swipeDownAction: Constants.Action
@@ -219,7 +220,7 @@ class Prefs(val context: Context) {
         set(value) = storeAction(CLICK_DATE_ACTION, value)
 
     var doubleTapAction: Constants.Action
-        get() = loadAction(DOUBLE_TAP_ACTION, Constants.Action.LockScreen)
+        get() = loadAction(DOUBLE_TAP_ACTION, Constants.Action.Disabled)
         set(value) = storeAction(DOUBLE_TAP_ACTION, value)
 
     private fun loadAction(prefString: String, default: Constants.Action): Constants.Action {
@@ -237,7 +238,7 @@ class Prefs(val context: Context) {
     var appTheme: Constants.Theme
         get() {
             return try {
-                Constants.Theme.valueOf(prefs.getString(APP_THEME, Constants.Theme.System.name).toString())
+                Constants.Theme.valueOf(prefs.getString(APP_THEME, Constants.Theme.Dark.name).toString())
             } catch (_: Exception) {
                 Constants.Theme.System
             }
@@ -335,9 +336,9 @@ class Prefs(val context: Context) {
     var textSize: Int
         get() {
             return try {
-                prefs.getInt(TEXT_SIZE, 18)
+                prefs.getInt(TEXT_SIZE, 32)
             } catch (_: Exception) {
-                18
+                32
             }
         }
         set(value) = prefs.edit().putInt(TEXT_SIZE, value).apply()
