@@ -14,7 +14,7 @@ This application is a derivative work based on "OLauncher Clutter Free," which i
 For the full text of the GPLv3.0 license, please refer to: https://www.gnu.org/licenses/gpl-3.0.html
 </string>
     <string name="oklagom">OK</string>
-    <string name="accessibility_service_name">OlauncherCF Actions Service</string>
+    <string name="accessibility_service_name">Home Screen Actions Service</string>
     <string name="app">App</string>
     <string name="set_as_default_launcher">Set as default launcher</string>
     <string name="app_text_color">Text color</string>
