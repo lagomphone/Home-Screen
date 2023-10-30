@@ -84,11 +84,11 @@ object SettingsComposable {
                     fontSize = fontSize,
                     modifier = Modifier.align(CenterStart)
                 )
-                Image(
-                    painterResource(R.drawable.ic_outline_info_24),
-                    contentDescription = "",
-                    modifier = Modifier.size(iconSize).align(TopEnd).clickable { onClick() },
-                )
+                //        Image(
+                //          painterResource(R.drawable.ic_outline_info_24),
+                //           contentDescription = "",
+                //          modifier = Modifier.size(iconSize).align(TopEnd).clickable { onClick() },
+                //   )
             }
             content()
         }
