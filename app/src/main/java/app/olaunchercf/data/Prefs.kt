@@ -55,6 +55,9 @@ private const val DOUBLE_TAP = "DOUBLE_TAP"
 
 private const val TEXT_SIZE = "text_size"
 
+private const val SETTINGS_OPEN_COUNT = "SETTINGS_OPEN_COUNT"
+private const val MAX_SETTINGS_OPEN_COUNT = 2
+
 class Prefs(val context: Context) {
 
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
@@ -93,9 +96,13 @@ class Prefs(val context: Context) {
     // this is a true-once-false-after variable
     // e.g. it returns on first-ever read, and false everytime afterwards
     fun firstSettingsOpen(): Boolean {
-        return firstTrueFalseAfter(FIRST_SETTINGS_OPEN)
+        return getCountForSettingsOpen() < MAX_SETTINGS_OPEN_COUNT
     }
-
+    private fun getCountForSettingsOpen(): Int {
+        val count = prefs.getInt(SETTINGS_OPEN_COUNT, 0)
+        prefs.edit().putInt(SETTINGS_OPEN_COUNT, count + 1).apply()
+        return count
+    }
     var lockModeOn: Boolean
         get() = prefs.getBoolean(LOCK_MODE, false)
         set(value) = prefs.edit().putBoolean(LOCK_MODE, value).apply()
