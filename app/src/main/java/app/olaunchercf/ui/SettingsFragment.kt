@@ -139,13 +139,13 @@ class SettingsFragment : Fragment() {
                 title = stringResource(R.string.appearance),
                 selected = selected,
                 items = arrayOf(
-                    { _, onChange ->
-                        SettingsToggle(
-                            title = stringResource(R.string.status_bar),
-                            onChange = onChange,
-                            state = remember { mutableStateOf(prefs.showStatusBar) },
-                        ) { toggleStatusBar() }
-                    },
+                    //   { _, onChange ->
+                    //     SettingsToggle(
+                    //         title = stringResource(R.string.status_bar),
+                    //         onChange = onChange,
+                    //         state = remember { mutableStateOf(prefs.showStatusBar) },
+                    //      ) { toggleStatusBar() }
+                    //   },
                     { open, onChange ->
                         SettingsItem(
                             title = stringResource(R.string.theme_mode),
@@ -166,18 +166,18 @@ class SettingsFragment : Fragment() {
                             onSelect = { j -> setLang(j) }
                         )
                     },
-                    { open, onChange ->
-                        SettingsNumberItem(
-                            title = stringResource(R.string.app_text_size),
-                            open = open,
-                            onChange = onChange,
-                            currentSelection = remember { mutableStateOf(prefs.textSize) },
-                            min = Constants.TEXT_SIZE_MIN,
-                            max = Constants.TEXT_SIZE_MAX,
-                            onValueChange = { },
-                            onSelect = { f -> setTextSize(f) }
-                        )
-                    }
+                    //   { open, onChange ->
+                    //     SettingsNumberItem(
+                    //        title = stringResource(R.string.app_text_size),
+                    //       open = open,
+                    //       onChange = onChange,
+                    //       currentSelection = remember { mutableStateOf(prefs.textSize) },
+                    //        min = Constants.TEXT_SIZE_MIN,
+                    //        max = Constants.TEXT_SIZE_MAX,
+                    //       onValueChange = { },
+                    //        onSelect = { f -> setTextSize(f) }
+                    //    )
+                    //}
                 )
             )
             SettingsArea(title = stringResource(R.string.behavior),
@@ -190,13 +190,13 @@ class SettingsFragment : Fragment() {
                             state = remember { mutableStateOf(prefs.autoShowKeyboard) },
                         ) { toggleKeyboardText() }
                     },
-                    { _, onChange ->
-                        SettingsToggle(
-                            title = stringResource(R.string.auto_open_apps),
-                            onChange = onChange,
-                            state = remember { mutableStateOf(prefs.autoOpenApp) },
-                        ) { toggleAutoOpenApp() }
-                    },
+                    //{ _, onChange ->
+                    //   SettingsToggle(
+                    //        title = stringResource(R.string.auto_open_apps),
+                    //       onChange = onChange,
+                    //        state = remember { mutableStateOf(prefs.autoOpenApp) },
+                    //   ) { toggleAutoOpenApp() }
+                    //},
                 )
             )
             SettingsArea(title = stringResource(R.string.homescreen),
@@ -208,18 +208,18 @@ class SettingsFragment : Fragment() {
                             open = open,
                             onChange = onChange,
                             currentSelection = remember { mutableStateOf(prefs.homeAppsNum) },
-                            min = 0,
+                            min = 1,
                             max = Constants.MAX_HOME_APPS,
                             onSelect = { j -> updateHomeAppsNum(j) }
                         )
                     },
-                    { _, onChange ->
-                        SettingsToggle(
-                            title = stringResource(R.string.show_time),
-                            onChange = onChange,
-                            state = remember { mutableStateOf(prefs.showTime) }
-                        ) { toggleShowTime() }
-                    },
+                    //  { _, onChange ->
+                    //     SettingsToggle(
+                    //       title = stringResource(R.string.show_time),
+                    //       onChange = onChange,
+                    //       state = remember { mutableStateOf(prefs.showTime) }
+                    //   ) { toggleShowTime() }
+                    //},
                     { _, onChange ->
                         SettingsToggle(
                             title = stringResource(R.string.show_date),
@@ -256,16 +256,16 @@ class SettingsFragment : Fragment() {
                             onSelect = { gravity -> setHomeAlignment(gravity) }
                         )
                     },
-                    { _, onChange ->
-                        SettingsToggle(
-                            title = stringResource(R.string.home_alignment_bottom),
-                            onChange = onChange,
-                            state = remember { mutableStateOf(prefs.homeAlignmentBottom) }
-                        ) { toggleHomeAppsBottom() }
-                    },
+                    //{ _, onChange ->
+                    //    SettingsToggle(
+                    //        title = stringResource(R.string.home_alignment_bottom),
+                    //       onChange = onChange,
+                    //       state = remember { mutableStateOf(prefs.homeAlignmentBottom) }
+                    //   ) { toggleHomeAppsBottom() }
+                    //},
                     { open, onChange ->
                         SettingsItem(
-                            title = stringResource(R.string.clock_alignment),
+                            title = stringResource(R.string.lagom_date),
                             open = open,
                             onChange = onChange,
                             currentSelection = remember { mutableStateOf(prefs.clockAlignment) },
@@ -309,15 +309,15 @@ class SettingsFragment : Fragment() {
                         )
                     },
                     { open, onChange ->
-                        SettingsGestureItem(
-                            title = stringResource(R.string.swipe_up_app),
-                            open = open,
-                            onChange = onChange,
-                            currentAction = prefs.swipeUpAction,
-                            onSelect = { j -> updateGesture(AppDrawerFlag.SetSwipeUp, j) },
-                            appLabel = prefs.appSwipeUp.appLabel,
-                        )
-                    },
+                       SettingsGestureItem(
+                           title = stringResource(R.string.swipe_up_app),
+                           open = open,
+                          onChange = onChange,
+                           currentAction = prefs.swipeUpAction,
+                           onSelect = { j -> updateGesture(AppDrawerFlag.SetSwipeUp, j) },
+                           appLabel = prefs.appSwipeUp.appLabel,
+                       )
+                     },
                     { open, onChange ->
                         SettingsGestureItem(
                             title = stringResource(R.string.swipe_down_app),
@@ -328,16 +328,16 @@ class SettingsFragment : Fragment() {
                             appLabel = prefs.appSwipeDown.appLabel,
                         )
                     },
-                    { open, onChange ->
-                        SettingsGestureItem(
-                            title = stringResource(R.string.clock_click_app),
-                            open = open,
-                            onChange = onChange,
-                            currentAction = prefs.clickClockAction,
-                            onSelect = { j -> updateGesture(AppDrawerFlag.SetClickClock, j) },
-                            appLabel = prefs.appClickClock.appLabel.ifEmpty { "Clock" },
-                        )
-                    },
+                    //{ open, onChange ->
+                    //   SettingsGestureItem(
+                    //       title = stringResource(R.string.clock_click_app),
+                    //       open = open,
+                    //       onChange = onChange,
+                    //       currentAction = prefs.clickClockAction,
+                    //       onSelect = { j -> updateGesture(AppDrawerFlag.SetClickClock, j) },
+                    //        appLabel = prefs.appClickClock.appLabel.ifEmpty { "Clock" },
+                    //  )
+                    //},
                     { open, onChange ->
                         SettingsGestureItem(
                             title = stringResource(R.string.date_click_app),
@@ -452,9 +452,13 @@ class SettingsFragment : Fragment() {
                 }
             }
 
-            Button(onClick = { showDialog.value = true }) {
+            Button(
+                onClick = { showDialog.value = true },
+                modifier = Modifier.padding(bottom = 40.dp)
+            ) {
                 Text(text = stringResource(R.string.show_license))
             }
+
 
         }
     }
@@ -528,7 +532,24 @@ class SettingsFragment : Fragment() {
     private fun updateHomeAppsNum(homeAppsNum: Int) {
         prefs.homeAppsNum = homeAppsNum
         viewModel.homeAppsCount.value = homeAppsNum
+
+        val textSize = when (homeAppsNum) {
+            15 -> 14
+            14 -> 16
+            13 -> 18
+            12 -> 22
+            11 -> 25
+            10 -> 29
+            9 -> 33
+            8, 7, 6, 5, 4, 3, 2, 1 -> 38
+            else -> 33
+        }
+
+        setTextSize(textSize)
     }
+
+
+
 
     private fun toggleKeyboardText() {
         prefs.autoShowKeyboard = !prefs.autoShowKeyboard

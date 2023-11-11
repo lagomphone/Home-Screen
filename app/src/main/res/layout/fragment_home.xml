@@ -74,18 +74,21 @@
 
         <TextView
             style="@style/TextSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="@string/swipe_up_for_apps" />
+            android:text="@string/swipe_up_for_apps"
+            android:textAlignment="center" />
 
         <TextView
             style="@style/TextSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/long_press_for_settings" />
+            android:text="@string/long_press_for_settings"
+            android:textAlignment="center" />
 
     </LinearLayout>
+
 
     <!-- Set default launcher -->
     <TextView

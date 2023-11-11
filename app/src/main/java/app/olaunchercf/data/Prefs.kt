@@ -343,9 +343,9 @@ class Prefs(val context: Context) {
     var textSize: Int
         get() {
             return try {
-                prefs.getInt(TEXT_SIZE, 32)
+                prefs.getInt(TEXT_SIZE, 33)
             } catch (_: Exception) {
-                32
+                33
             }
         }
         set(value) = prefs.edit().putInt(TEXT_SIZE, value).apply()

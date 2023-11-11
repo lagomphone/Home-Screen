@@ -15,6 +15,8 @@ This application is a derivative work based on "OLauncher Clutter Free," which i
     <string name="oklagom">OK</string>
     <string name="show_full_license">SHOW FULL LICENSE</string>
 
+    <string name="lagom_date">Date</string>
+
     <string name="accessibility_service_name">Home Screen Actions Service</string>
     <string name="app">App</string>
     <string name="set_as_default_launcher">Set as default launcher</string>
