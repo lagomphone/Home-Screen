@@ -227,8 +227,17 @@ class AppDrawerAdapter(
 
                 appTitleFrame.setOnClickListener { listener(appModel) }
                 appTitleFrame.setOnLongClickListener {
-                    appHideLayout.visibility = View.VISIBLE
+                    // Simulate a click on appInfo when appTitleFrame is long-pressed
+                    appInfo.performClick()
                     true
+                }
+
+                appInfo.apply {
+                    setOnClickListener { appInfoListener(appModel) }
+                    setOnLongClickListener {
+                        uninstallApp(context, appModel.appPackage)
+                        true
+                    }
                 }
 
                 appInfo.apply {

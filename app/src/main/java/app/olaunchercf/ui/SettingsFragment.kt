@@ -35,7 +35,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import app.olaunchercf.BuildConfig
 import app.olaunchercf.MainViewModel
 import app.olaunchercf.R
 import app.olaunchercf.data.Constants
@@ -127,14 +126,11 @@ class SettingsFragment : Fragment() {
 
         Column {
             SettingsTopView(
-                "Home Screen",
-                onClick = { openAppInfo(requireContext(), android.os.Process.myUserHandle(), BuildConfig.APPLICATION_ID) },
+                "Home Screen Settings",
             ) {
-                SimpleTextButton(stringResource(R.string.hidden_apps) ) {
-                    showHiddenApps()
-                }
-                // The button for changeLauncherText has been removed
+
             }
+
             SettingsArea(
                 title = stringResource(R.string.appearance),
                 selected = selected,

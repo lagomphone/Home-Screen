@@ -76,6 +76,10 @@ class AppDrawerFragment : Fragment() {
             else -> {}
         }
 
+// This line will ensure the drawerButton is always hidden
+        binding.drawerButton.visibility = View.GONE // or View.INVISIBLE
+
+
         val viewModel = activity?.run {
             ViewModelProvider(this)[MainViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
