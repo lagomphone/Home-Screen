@@ -186,13 +186,13 @@ class SettingsFragment : Fragment() {
                             state = remember { mutableStateOf(prefs.autoShowKeyboard) },
                         ) { toggleKeyboardText() }
                     },
-                    //{ _, onChange ->
-                    //   SettingsToggle(
-                    //        title = stringResource(R.string.auto_open_apps),
-                    //       onChange = onChange,
-                    //        state = remember { mutableStateOf(prefs.autoOpenApp) },
-                    //   ) { toggleAutoOpenApp() }
-                    //},
+                    { _, onChange ->
+                       SettingsToggle(
+                            title = stringResource(R.string.auto_open_apps),
+                           onChange = onChange,
+                            state = remember { mutableStateOf(prefs.autoOpenApp) },
+                      ) { toggleAutoOpenApp() }
+                    },
                 )
             )
             SettingsArea(title = stringResource(R.string.homescreen),
