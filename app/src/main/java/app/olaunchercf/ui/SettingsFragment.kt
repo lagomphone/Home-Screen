@@ -195,7 +195,7 @@ class SettingsFragment : Fragment() {
                     },
                 )
             )
-            SettingsArea(title = stringResource(R.string.homescreen),
+            SettingsArea(title = stringResource(R.string.app_name),
                 selected = selected,
                 items = arrayOf(
                     { open, onChange ->
